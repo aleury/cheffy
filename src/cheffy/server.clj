@@ -35,9 +35,4 @@
 (defn -main
   [config-file]
   (let [config (-> config-file slurp ig/read-string)]
-    (-> config ig/init)))
-
-(comment
-  (app {:request-method :get
-        :uri "/v1/recipes"})
-  (-main "resources/config.edn"))
+    (-> config ig/prep ig/init)))
