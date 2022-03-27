@@ -16,6 +16,6 @@
           recipe (recipe-db/find-recipe-by-id db recipe-id)]
       (if recipe
         (rr/response recipe)
-        (rr/not-found {:type "recipe-not-found"
+        (rr/not-found {:type    "recipe-not-found"
                        :message "Recipe not found"
-                       :data (str "recipe-id " recipe-id)})))))
+                       :data    (str "recipe-id " recipe-id)})))))

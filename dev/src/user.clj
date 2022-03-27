@@ -19,7 +19,7 @@
 
 (comment
   (-> (app {:request-method :get
-            :uri "/v1/recipes/123456-recipe"})
+            :uri            "/v1/recipes/123456-recipe"})
       :body
       (slurp))
   (go)

@@ -12,11 +12,11 @@
 (def swagger-docs
   ["/swagger.json"
    {:get
-    {:no-doc true
+    {:no-doc  true
      :swagger {:basePath "/"
-               :info {:title "Cheffy API Reference"
-                      :description "The Cheffy API is organized around REST. Returns JSON, Transit (msgpack, json), or EDN encoded responses."
-                      :version "1.0.0"}}
+               :info     {:title       "Cheffy API Reference"
+                          :description "The Cheffy API is organized around REST. Returns JSON, Transit (msgpack, json), or EDN encoded responses."
+                          :version     "1.0.0"}}
      :handler (swagger/create-swagger-handler)}}])
 
 (defn v1 [env]
