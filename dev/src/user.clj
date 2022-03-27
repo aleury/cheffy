@@ -21,7 +21,10 @@
   (app {:request-method :get
         :uri "/v1/recipes"})
   (jdbc/execute! db ["select * from recipe where public = true;"])
-  (sql/find-by-keys db :recipe {:public true})
+  (time
+    (with-open [conn (jdbc/get-connection db)]
+      {:public (sql/find-by-keys conn :recipe {:public true})
+       :drafts (sql/find-by-keys conn :recipe {:public false})}))
   (go)
   (halt)
   (reset))
