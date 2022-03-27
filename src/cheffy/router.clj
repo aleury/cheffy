@@ -29,7 +29,8 @@
           :middleware [swagger/swagger-feature
                        muuntaja/format-middleware
                        exception/exception-middleware
-                       coercion/coerce-request-middleware]}})
+                       coercion/coerce-request-middleware
+                       coercion/coerce-response-middleware]}})
 
 (defn routes
   [env]
