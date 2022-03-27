@@ -6,8 +6,9 @@
   (let [db (:jdbc-url env)]
     ["/recipes" {:swagger {:tags ["recipes"]}}
      [""
-      {:get (recipes/list-all-recipes db)
-       :summary "List all recipes."}]
+      {:get {:summary "List all recipes."
+             :handler (recipes/list-all-recipes db)}}]
      ["/:recipe-id"
-      {:get (recipes/retrieve-recipe db)
-       :summary "Retrieve recipe."}]]))
+      {:get {:summary "Retrieve recipe."
+             :parameters {:path {:recipe-id string?}}
+             :handler (recipes/retrieve-recipe db)}}]]))
