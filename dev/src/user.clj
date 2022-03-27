@@ -20,11 +20,15 @@
 
 (comment
   (recipes/update-recipe! db {:recipe-id "7e6acead-8b62-4c7a-9ab7-02881d33ad6d"
-                              :name "my-recipe-name"})
+                              :name      "my-recipe-name"})
+
+  (recipes/delete-recipe! db "285a939a-3e95-4917-8b2b-d1a5a4853db4")
+
+  (sql/delete! db :recipe {:recipe-id "0cafb320-a21c-4793-932e-e4a07f2a09eb"})
 
   (let [where-params {:recipe-id "7e6acead-8b62-4c7a-9ab7-02881d33ad6d"}
         result (sql/update! db :recipe {:name "my-updated-recipe-again-again"}
-                                            where-params)]
+                            where-params)]
     (= (:next.jdbc/update-count result) 1))
 
   (-> (app {:request-method :get

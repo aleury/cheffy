@@ -28,4 +28,8 @@
                                  :public    boolean?
                                  :img       string?}}
              :responses  {204 {:body nil?}}
-             :handler    (recipes/update-recipe! db)}}]]))
+             :handler    (recipes/update-recipe! db)}
+       :delete {:summary    "Delete a recipe."
+                :parameters {:path {:recipe-id string?}}
+                :responses  {204 {:body nil?}}
+                :handler    (recipes/delete-recipe! db)}}]]))

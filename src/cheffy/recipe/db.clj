@@ -34,3 +34,10 @@
        (sql/update! db :recipe recipe)
        :next.jdbc/update-count
        (pos?)))
+
+
+(defn delete-recipe!
+  [db recipe-id]
+  (->> (sql/delete! db :recipe {:recipe-id recipe-id})
+       ::jdbc/update-count
+       (pos?)))

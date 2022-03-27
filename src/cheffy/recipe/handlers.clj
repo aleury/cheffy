@@ -37,7 +37,17 @@
   (fn [request]
     (let [recipe-id (get-in request [:parameters :path :recipe-id])
           recipe (get-in request [:parameters :body])
-          update-successful? (recipe-db/update-recipe! db (assoc recipe :recipe-id recipe-id))]
-      (if update-successful?
+          updated? (recipe-db/update-recipe! db (assoc recipe :recipe-id recipe-id))]
+      (if updated?
+        (rr/status 204)
+        (rr/not-found {:recipe-id recipe-id})))))
+
+
+(defn delete-recipe!
+  [db]
+  (fn [request]
+    (let [recipe-id (get-in request [:parameters :path :recipe-id])
+          deleted? (recipe-db/delete-recipe! db recipe-id)]
+      (if deleted?
         (rr/status 204)
         (rr/not-found {:recipe-id recipe-id})))))
