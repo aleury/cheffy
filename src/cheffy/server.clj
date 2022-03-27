@@ -26,7 +26,7 @@
 (defmethod ig/init-key :db/postgres
   [_ config]
   (println "\nConfigured db")
-  (merge config {:jdbc-url (env :jdbc-database-url)}))
+  (merge config {:jdbcUrl (env :jdbc-database-url)}))
 
 (defmethod ig/halt-key! :server/jetty
   [_ jetty]

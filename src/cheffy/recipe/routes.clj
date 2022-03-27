@@ -1,6 +1,9 @@
-(ns cheffy.recipe.routes)
+(ns cheffy.recipe.routes
+  (:require [cheffy.recipe.handlers :as recipes]))
 
 (defn routes
   [env]
-  ["/recipes" {:get {:handler (fn [req] {:status 200
-                                         :body "Hello Reitit!"})}}])
+  (let [db (:jdbc-url env)]
+    ["/recipes" {:swagger {:tags ["recipes"]}
+                 :get {:summary "List all recipes."
+                       :handler (recipes/list-all-recipes db)}}]))
