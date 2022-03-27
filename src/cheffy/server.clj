@@ -1,6 +1,5 @@
 (ns cheffy.server
-  (:require [reitit.ring :as ring]
-            [ring.adapter.jetty :as jetty]
+  (:require [ring.adapter.jetty :as jetty]
             [integrant.core :as ig]
             [environ.core :refer [env]]
             [cheffy.router :as router]))
