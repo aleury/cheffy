@@ -18,7 +18,7 @@
     (let [recipe (sql/get-by-id conn :recipe recipe-id :recipe_id {})
           steps (sql/find-by-keys conn :step {:recipe_id recipe-id})
           ingredients (sql/find-by-keys conn :ingredient {:recipe_id recipe-id})]
-      (when (seq recipe)
+      (when recipe
         (assoc recipe
           :recipe/steps steps
           :recipe/ingredients ingredients)))))
