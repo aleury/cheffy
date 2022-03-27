@@ -31,3 +31,13 @@
       (recipe-db/insert-recipe! db (assoc recipe :recipe-id recipe-id :uid uid))
       (rr/created (str responses/base-url "/recipes/" recipe-id)
                   {:recipe-id recipe-id}))))
+
+(defn update-recipe!
+  [db]
+  (fn [request]
+    (let [recipe-id (get-in request [:parameters :path :recipe-id])
+          recipe (get-in request [:parameters :body])
+          update-successful? (recipe-db/update-recipe! db (assoc recipe :recipe-id recipe-id))]
+      (if update-successful?
+        (rr/status 204)
+        (rr/not-found {:recipe-id recipe-id})))))
