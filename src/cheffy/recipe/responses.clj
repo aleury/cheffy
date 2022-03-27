@@ -1,6 +1,8 @@
 (ns cheffy.recipe.responses
   (:require [spec-tools.data-spec :as ds]))
 
+(def base-url "https://api.cheffy.com")
+
 (def step
   {:step/step_id     string?
    :step/sort        int?

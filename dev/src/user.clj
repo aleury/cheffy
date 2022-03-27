@@ -19,7 +19,14 @@
 
 (comment
   (-> (app {:request-method :get
-            :uri            "/v1/recipes/123456-recipe"})
+            :uri            "/v1/recipes/65a3e960-0134-4136-8cfa-a7cd2bbee0c5"})
+      :body
+      (slurp))
+  (-> (app {:request-method :post
+            :uri            "/v1/recipes"
+            :body-params    {:name      "my recipe"
+                             :prep-time 49
+                             :img       "img-url"}})
       :body
       (slurp))
   (go)
